@@ -1,11 +1,13 @@
 const { DATABASE_SCHEMA, DATABASE_URL, SHOW_PG_MONITOR } = require('./config');
 const massive = require('massive');
 const monitor = require('pg-monitor');
-const { seedApiData } = require('./data-seeders/api_seeder');
+const { seedApiData } = require('./seeder/datausa_seeder');
+const { showSums } = require('./reports/population_sums');
+
 
 // Call start
 (async () => {
-    console.log('main.js: before start');
+    console.log('Connecting to database');
 
     const db = await massive({
         connectionString: DATABASE_URL,
@@ -21,10 +23,9 @@ const { seedApiData } = require('./data-seeders/api_seeder');
         noWarnings: true,
         error: function (err, client) {
             console.log(err);
-            //process.emit('uncaughtException', err);
-            //throw err;
         }
     });
+    console.log('Connected successfully to the database');
 
     if (!monitor.isAttached() && SHOW_PG_MONITOR === 'true') {
         monitor.attach(db.driverConfig);
@@ -65,24 +66,21 @@ const { seedApiData } = require('./data-seeders/api_seeder');
 
     try {
         await migrationUp();
-        await seedApiData(db);
+        const apiData = await seedApiData(db);
+        await showSums(apiData, db);
 
-        //exemplo de insert
-        // const result1 = await db[DATABASE_SCHEMA].api_data.insert({
-        //     doc_record: { 'a': 'b' },
-        // })
-        // console.log('result1 >>>', result1);
+        // const populationSum = await db[DATABASE_SCHEMA].api_data.
 
-        //exemplo select
-        const result2 = await db[DATABASE_SCHEMA].api_data.find({
-            is_active: true
-        });
-        console.log('result2 >>>', result2);
+        // const result2 = await db[DATABASE_SCHEMA].api_data.find({
+        //     is_active: true
+        // });
+        // console.log('result2 >>>', db[DATABASE_SCHEMA].api_data.columns);
 
     } catch (e) {
-        console.log(e.message)
+        console.log(e.message);
     } finally {
         console.log('finally');
     }
-    console.log('main.js: after start');
+
+    module.exports = { db };
 })();
