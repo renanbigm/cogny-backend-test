@@ -1,9 +1,9 @@
 Para este desafio, implementei o código com uma CLI para facilitar a interação do usuário. 
 Para executar a aplicação, basta abrir o terminal na pasta raiz do projeto e digitar o comando "node index.js".
 
-Ao ser executado, o código irá pedir que você informe os anos que deseja calcular a soma da população. 
+Ao ser executado, o código irá pedir que você informe os anos que deseja calcular a soma da população dos EUA. 
 É importante mencionar que apenas os anos entre 2013 e 2020 são aceitos. 
-Se não quiser digitar, basta pressionar Enter e será gerada a soma da população dos EUA entre os anos de 2018 a 2020.
+Se não quiser digitar, basta pressionar Enter e será gerada a soma da população entre os anos de 2018 a 2020.
 
 Além disso, ao executar a aplicação, uma VIEW será criada automaticamente no banco de dados,
 contendo a soma da população dos anos 2018, 2019 e 2020. Essa VIEW estará disponível para consultas futuras,
