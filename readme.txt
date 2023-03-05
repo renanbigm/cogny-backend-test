@@ -12,6 +12,11 @@ sem a necessidade de executar novamente o código para realizar a soma.
 Com base nos anos informados, o código irá consumir a API disponibilizada e gravar o resultado na tabela "api_data" do banco de dados.
 Em seguida, irá realizar a soma da propriedade "Population" dos anos informados e exibir o resultado no console.
 
+É necessário criar e configurar um arquivo .env com as seguintes variáveis:
+DATABASE_SCHEMA=<seu_usuario_github>
+DATABASE_URL=postgres://jhpyzfllgzzylu:2215c47570002f443b50ddb78950f1c05a2cd36e8e6d561587b0f485a987f715@ec2-54-204-241-136.compute-1.amazonaws.com:5432/d5lu14f9d92nno
+SHOW_PG_MONITOR=false
+
 -------------------------------------------------------------------------------------------------------------------
                                                     < Desafio >
 1. Consumir a API (https://datausa.io/api/data?drilldowns=Nation&measures=Population) e gravar o resultado na tabela "api_data" no na coluna "doc_record".
