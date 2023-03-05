@@ -1,4 +1,4 @@
-Para este desafio, implementei um código com uma CLI para facilitar a interação do usuário. 
+Para este desafio, implementei o código com uma CLI para facilitar a interação do usuário. 
 Para executar a aplicação, basta abrir o terminal na pasta raiz do projeto e digitar o comando "node index.js".
 
 Ao ser executado, o código irá pedir que você informe os anos que deseja calcular a soma da população. 
