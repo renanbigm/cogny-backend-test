@@ -9,18 +9,18 @@ const startCli = async (db, schema, apiData) => {
 
     try {
         const yearsToSum =  await new Promise((resolve) => {
-            rl.question('Type the years and press Enter to continue (example: 2013, 2020): ', 
+            rl.question('> Type the years and press Enter to continue (example: 2013, 2020): ', 
                 (answer) => resolve(answer));
         });
 
         if (yearsToSum) {
-            const inputYearsArray = yearsToSum.split(',').map((year) => year.trim());
-  
+            const inputYearsArray = yearsToSum.split(',').map((year) => year.trim()); // transforms the string that comes from yearsToSum to an array 
+                                                                                      // and the trim function eliminates empty spaces.
             const sumToShow = calculatePopulation.inMemory(apiData, inputYearsArray);
-            console.log(`Sum result of ${yearsToSum}: ${sumToShow}`);
+            console.log(`> Sum result of ${yearsToSum}: ${sumToShow}`);
         } else {
             const sumToShow = await calculatePopulation.inlineSelect(db, schema);
-            console.log(`Sum result of 2018, 2019, 2020: ${sumToShow}`);
+            console.log(`> Sum result of 2018, 2019, 2020: ${sumToShow}`);
         } 
     
     } catch (e) {
