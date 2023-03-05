@@ -2,7 +2,7 @@ const { DATABASE_SCHEMA, DATABASE_URL, SHOW_PG_MONITOR } = require('./config');
 const massive = require('massive');
 const monitor = require('pg-monitor');
 const { seedApiData } = require('./seeder/datausa_seeder');
-const { showSums } = require('./reports/population_sums');
+const { showSums } = require('./reports/calculate_population_by_year');
 
 
 // Call start
@@ -43,7 +43,6 @@ const { showSums } = require('./reports/population_sums');
                     });
                 }
             }
-
             resolve();
         });
     };
@@ -69,15 +68,8 @@ const { showSums } = require('./reports/population_sums');
         const apiData = await seedApiData(db);
         await showSums(apiData, db);
 
-        // const populationSum = await db[DATABASE_SCHEMA].api_data.
-
-        // const result2 = await db[DATABASE_SCHEMA].api_data.find({
-        //     is_active: true
-        // });
-        // console.log('result2 >>>', db[DATABASE_SCHEMA].api_data.columns);
-
     } catch (e) {
-        console.log(e.message);
+        console.error(`Something went wrong: ${e.message}`);
     } finally {
         console.log('finally');
     }
