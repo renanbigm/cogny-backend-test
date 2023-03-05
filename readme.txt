@@ -12,7 +12,7 @@ sem a necessidade de executar novamente o código para realizar a soma.
 Com base nos anos informados, o código irá consumir a API disponibilizada e gravar o resultado na tabela "api_data" do banco de dados.
 Em seguida, irá realizar a soma da propriedade "Population" dos anos informados e exibir o resultado no console.
 
----------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------
                                                     < Desafio >
 1. Consumir a API (https://datausa.io/api/data?drilldowns=Nation&measures=Population) e gravar o resultado na tabela "api_data" no na coluna "doc_record".
 Saida da API:
